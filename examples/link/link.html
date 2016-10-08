@@ -36,6 +36,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         Editor,
         EditorState,
         RichUtils,
+        Entity
       } = Draft;
 
       class LinkEditorExample extends React.Component {
@@ -179,13 +180,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
       }
 
-      function findLinkEntities(contentState, contentBlock, callback) {
+      function findLinkEntities(contentBlock, callback) {
         contentBlock.findEntityRanges(
           (character) => {
             const entityKey = character.getEntity();
             return (
               entityKey !== null &&
-              contentState.getEntity(entityKey).getType() === 'LINK'
+              Entity.get(entityKey).getType() === 'LINK'
             );
           },
           callback
